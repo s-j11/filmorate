@@ -1,10 +1,13 @@
 package controllers;
 
+import exseptions.InvalidUserBirthdayException;
 import exseptions.InvalidUserEmailException;
+import exseptions.InvalidUserLoginException;
 import exseptions.UserAlreadyExistException;
 import models.User;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,12 +41,19 @@ public class UserController {
                     throw new InvalidUserEmailException("E-mail не введен");
                 }else if(user.getEmail().contains("@")){
                     throw new InvalidUserEmailException("E-mail должен содержать символ @");
-                }else if(user.getEmail().contains("@")){
-                    throw new InvalidUserEmailException("E-mail должен содержать символ @");
+                }else if(user.getLogin().equals(null)){
+                    throw new InvalidUserLoginException("Логин не введен");
+                }else if(user.getLogin().contains(" ")){
+                    throw new InvalidUserLoginException("Логин не должен содержать пробелы");
+                }else if(user.getName().isBlank()){
+                    user.setName(user.getLogin());
+                }else if(user.getBirthday().isAfter(LocalDate.now())){
+                    throw new InvalidUserBirthdayException("Дата рождение не может быть в будущем");
                 } else {
                     users.put(user.getId(),user);
                 }
-            }catch (UserAlreadyExistException | InvalidUserEmailException e){
+            }catch (UserAlreadyExistException | InvalidUserEmailException | InvalidUserLoginException |
+                    InvalidUserBirthdayException e){
                 e.getMessage();}
         }
         return user;
