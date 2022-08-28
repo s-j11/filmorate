@@ -3,6 +3,7 @@ package ru.yandex.practicum.filmorate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.yandex.practicum.filmorate.models.Film;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -11,7 +12,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FilmControllerTest {
-    Map<Integer,Film> films = new HashMap<>();
+    Map<Integer, Film> films = new HashMap<>();
     Film film = new Film();
 
     @BeforeEach
@@ -19,7 +20,7 @@ public class FilmControllerTest {
         film.setId(1);
         film.setName("Титаник");
         film.setDescription("Драма");
-        film.setReleaseData(LocalDate.of(1997,1,1));
+        film.setReleaseDate(LocalDate.of(1997,1,1));
         film.setDuration(195);
         films.put(film.getId(),film);
     }
@@ -31,7 +32,7 @@ public class FilmControllerTest {
         filmTest.setId(1);
         filmTest.setName("Титаник");
         filmTest.setDescription("Драма");
-        filmTest.setReleaseData(LocalDate.of(1997,1,1));
+        filmTest.setReleaseDate(LocalDate.of(1997,1,1));
         filmTest.setDuration(195);
         filmsTest.put(filmTest.getId(),filmTest);
         Assertions.assertEquals(filmsTest,films);
@@ -49,7 +50,7 @@ public class FilmControllerTest {
         filmTest.setId(1);
         filmTest.setName("Титаник");
         filmTest.setDescription("Драма");
-        filmTest.setReleaseData(LocalDate.of(1997,1,1));
+        filmTest.setReleaseDate(LocalDate.of(1997,1,1));
         filmTest.setDuration(195);
         filmsTest.put(filmTest.getId(),filmTest);
         Film film1 =films.get(1);
@@ -57,9 +58,8 @@ public class FilmControllerTest {
                 ()->assertEquals(filmsTest, films),
                 ()->assertNotEquals(null, film1.getName()),
                 ()->assertTrue(film1.getDescription().length() <= 200),
-                ()->assertTrue(film1.getReleaseData().isAfter(dateTest)),
-                ()->assertTrue(film1.getDuration()>0)
-        );
+                ()->assertTrue(film1.getReleaseDate().isAfter(dateTest)),
+                ()->assertTrue(film1.getDuration()>0));
     }
 
     @Test
@@ -70,7 +70,7 @@ public class FilmControllerTest {
         filmTest.setId(1);
         filmTest.setName("Титаник");
         filmTest.setDescription("Драма");
-        filmTest.setReleaseData(LocalDate.of(1997, 1, 1));
+        filmTest.setReleaseDate(LocalDate.of(1997, 1, 1));
         filmTest.setDuration(195);
         filmsTest.put(filmTest.getId(), filmTest);
         Film film1 = films.get(1);
@@ -78,9 +78,8 @@ public class FilmControllerTest {
                 () -> assertEquals(filmsTest, films),
                 () -> assertNotEquals(null, film1.getName()),
                 () -> assertTrue(film1.getDescription().length() <= 200),
-                () -> assertTrue(film1.getReleaseData().isAfter(dateTest)),
-                () -> assertTrue(film1.getDuration() > 0)
-        );
+                () -> assertTrue(film1.getReleaseDate().isAfter(dateTest)),
+                () -> assertTrue(film1.getDuration() > 0));
     }
 }
 

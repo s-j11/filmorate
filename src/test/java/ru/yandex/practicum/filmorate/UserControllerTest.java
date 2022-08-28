@@ -3,6 +3,7 @@ package ru.yandex.practicum.filmorate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.yandex.practicum.filmorate.models.User;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -61,8 +62,7 @@ public class UserControllerTest {
                 ()->assertNotEquals(null,user1.getLogin()),
                 ()->assertFalse(user1.getLogin().contains(" ")),
                 ()->assertEquals(userTest.getLogin(),user1.getName()),
-                ()->assertTrue(user1.getBirthday().isBefore(LocalDate.now()))
-        );
+                ()->assertTrue(user1.getBirthday().isBefore(LocalDate.now())));
     }
 
     @Test
@@ -84,7 +84,6 @@ public class UserControllerTest {
                 ()->assertNotEquals(null,user1.getLogin()),
                 ()->assertFalse(user1.getLogin().contains(" ")),
                 ()->assertEquals(userTest.getLogin(),user1.getName()),
-                ()->assertTrue(user1.getBirthday().isBefore(LocalDate.now()))
-        );
+                ()->assertTrue(user1.getBirthday().isBefore(LocalDate.now())));
     }
 }
